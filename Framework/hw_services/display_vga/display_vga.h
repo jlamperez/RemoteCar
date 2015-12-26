@@ -82,33 +82,14 @@ typedef struct {
 
 #define BTN_BASEADDR XPAR_BTNS_4BITS_BASEADDR
 
-void mover_pelota();
-void updateFrame();
-
-void dibujar_linea_malda(int x0, int y0 , int m, int length );
-void dibujar_linea_2_pto(int x0, int y0 , int x1, int y1 );
-void dibujar_caracter(int x, int y , int size);
-void dibujar_punto(int x, int y , int size);
-void dibujar_linea_vertical(int x , int y , int grosor);
-void dibujar_linea(int grosor);
 void displayInit();
-int DisplayDemoInitializeFroga(DisplayCtrl *dispPtr, u16 vdmaId, u16 timerId, u32 dispCtrlAddr, int fHdmi);
-int DisplayDemoFroga();
-void displayTest(void);
-void displayChar(int x , int y , char kar);
+int DisplayDemoInitialize(DisplayCtrl *dispPtr, u16 vdmaId, u16 timerId, u32 dispCtrlAddr, int fHdmi);
+void copiarFrameBuffer(void);
+void borrarFrameBuffer(void);
 
-void displayTestCirc_Perimetro(int x0, int y0 , int r);
-void displayTestRect_Perimetro(int x0, int y0 , int width , int height);
 void displayTestRect(int x0, int y0 , int width , int height);
 void displayTestCirc(int x0, int y0 , int r);
-float Q_rsqrt( float number );
-void display_borrar_buffer();
-
-void display_stop();
-void display_start();
-void escribirTablaAscii();
-
-
+void updateFrame(void);
 
 /* ------------------------------------------------------------ */
 /*					Miscellaneous Declarations					*/

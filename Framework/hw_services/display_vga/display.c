@@ -33,9 +33,10 @@
 /** 																			 	**/
 /*************************************************************************************/
 #include <stdio.h>
-#include "hw_abstraction.h"
+#include "../hal_core/hw_abstraction.h"
 
-#include "display.h"
+#if defined(VGA_DISPLAY)
+#include "../hal_core/display.h"
 #include "display_vga.h"
 
 /*************************************************************************************/
@@ -118,20 +119,16 @@ void DISPLAY_init() {
 void DISPLAY_printString(char str[]) {
 
 #if defined(ZYNQ_7000) &&  defined(VGA_DISPLAY)
-	int i =0;
-	char *car;
 
-	car = str;
+//	borrarFrameBuffer();
 
+	displayTestRect(100, 100 , 20 , 40);
+	displayTestRect(95, 105 , 5 , 10);
+	displayTestRect(95, 125 , 5 , 10);
+	displayTestRect(120, 105 , 5 , 10);
+	displayTestRect(120, 125 , 5 , 10);
 
-	display_borrar_buffer();
-
-	while (*car != '\0') {
-
-		displayChar(300 + i*10 , 200, *car);
-		i = i+1;
-		car = car+1;
-	}
+//	copiarFrameBuffer();
 
 	updateFrame();
 
@@ -163,3 +160,4 @@ int DISPLAY_readInteger() {
 /** 																			 	**/
 /*************************************************************************************/
 
+#endif

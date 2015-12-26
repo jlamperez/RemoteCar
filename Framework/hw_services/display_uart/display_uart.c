@@ -42,7 +42,7 @@ Description   : Implementación de las funciones del módulo Display.
 #include "xuartps.h"
 #include "xparameters.h"
 #define UART_BASEADDR XPAR_PS7_UART_1_BASEADDR
-#endif
+
 #include "display.h"
 
 
@@ -180,4 +180,4 @@ int DISPLAY_readInteger(){
 /** 																			 	**/
 /*************************************************************************************/
 
-
+#endif
