@@ -1,12 +1,12 @@
 /*
- * display.h
+ * display_vga.h
  *
- *  Created on: 28/10/2015
- *      Author: jaagirre
+ *  Created on: 27/12/2015
+ *      Author: jlamp
  */
 
-#ifndef DISPLAY_H_
-#define DISPLAY_H_
+#ifndef DISPLAY_VGA_H_
+#define DISPLAY_VGA_H_
 
 
 #define DISPLAY_NUM_FRAMES 3
@@ -280,4 +280,5 @@ int DisplayChangeFrame(DisplayCtrl *dispPtr, u32 frameIndex);
 /************************************************************************/
 
 
-#endif /* DISPLAY_H_ */
+
+#endif /* DISPLAY_VGA_H_ */
