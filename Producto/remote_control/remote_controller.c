@@ -45,11 +45,11 @@ void remoteControlerTask(void) {
  */
 CAR_CMD REMOTE_CONTROLLER_parseCmd(unsigned char buttons){
 	CAR_CMD ret = NOTHING;
-	if (buttons & 0x01) ret = FORWARD;
-	if (buttons & 0x02) ret = BACKWARD;
-	if (buttons & 0x04) ret = RIGHT;
-	if (buttons & 0x08) ret = LEFT;
-	if (buttons & 0x0) ret = STOP; //Cuando haces el & con 0 siempre es 0 por lo que el if de STOP no saltará
+	if (buttons == 0x01) ret = FORWARD;
+	if (buttons == 0x02) ret = BACKWARD;
+	if (buttons == 0x04) ret = RIGHT;
+	if (buttons == 0x08) ret = LEFT;
+	if (buttons == 0x0) ret = STOP; //Cuando haces el & con 0 siempre es 0 por lo que el if de STOP no saltará
 
 	return ret;
 }

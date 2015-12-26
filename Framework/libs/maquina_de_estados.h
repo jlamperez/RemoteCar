@@ -13,7 +13,7 @@
 typedef unsigned char BOOLEAN;
 typedef unsigned char BYTE;
 
-
+/*Definicion del tipo Accion y Evento*/
 typedef void            (*TPFN_ACC)(void); /* Puntero a una funci¢n acci¢n */
 typedef BOOLEAN         (*TPFN_EVE)(void); /* Puntero a una funci¢n evento */
 
@@ -68,6 +68,7 @@ typedef BOOLEAN         (*TPFN_EVE)(void); /* Puntero a una funci¢n evento */
 	 const TS_AUTOMATA nombre =          \
       {ident, 0 ,#nombre, StopC, (TS_ESTADO **) x##nombre};
 
+/*Definicion del tipo de dato que representa una transicion*/
 typedef struct {
 	  BYTE          id;             /* Identificador del estado destino */
 	  char        * nombre;         /* Nombre identificativo de depuraci¢n */
@@ -75,6 +76,7 @@ typedef struct {
 	  TPFN_ACC      accion;         /* Puntero a la funci¢n acci¢n */
 } TS_EVEACC;
 
+/*Definicion del tipo estado*/
 typedef struct {
 	  BYTE          id;             /* Identificador del estado */
 	  char        * nombre;         /* Nombre identificativo de depuraci¢n */
@@ -83,6 +85,7 @@ typedef struct {
 	  TS_EVEACC   * funcion;        /* Punteros las funciones del estado */
 } TS_ESTADO;
 
+/*Definicion del tipo Maquina de Estados*/
 typedef struct {
 	  BYTE          id;             /* Identificador del automata */
 	  BYTE 			id_estado_actual;

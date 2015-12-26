@@ -26,8 +26,7 @@ CAR car;
 extern TS_AUTOMATA car_logic;
 
 void carControlerTask(void) {
-//	static int count = 0;
-//	char str[60];
+
 	MSG msg;
 	CAR_CMD cmd = NOTHING;
 
@@ -43,9 +42,6 @@ void carControlerTask(void) {
 	CAR_CONTROLLER_executeLogic();
 	CAR_CONTROLLER_monitor();
 
-//	count++;
-//	sprintf(str, "carControllerTask\t%d msg= %s \r\n", count, msg.text);
-//	DISPLAY_printString(str);
 }
 
 CAR_CMD CAR_CONTROLLER_getCMDfromMSG(MSG msg) {
@@ -62,7 +58,7 @@ void CAR_CONTROLLER_executeCMD(CAR_CMD cmd) {
 	car.car_cmd = cmd;
 #ifdef DEBUG
 	if (cmd == NOTHING)
-		DISPLAY_printString("\r\n");
+		DISPLAY_printString("CAR CMD NOTHING\r\n");
 	if (cmd == FORWARD)
 		DISPLAY_printString("CAR CMD FORWARD\n");
 	if (cmd == BACKWARD)
@@ -81,26 +77,26 @@ void CAR_CONTROLLER_updateCar() {
 }
 
 void CAR_CONTROLLER_executeLogic() {
-	DISPLAY_printString("CAR LOGIC\n");
+	DISPLAY_printString("CAR EXECUTE LOGIC\n");
 	EjecutaAutomata(&car_logic);
 }
 void CAR_CONTROLLER_monitor() {
 	char str[60];
 	switch (car_logic.id_estado_actual) {
 	case STOPPED:
-		strcpy(str, "CAR ESTADO : STOPPED\n");
+		strcpy(str, "CAR MONITOR ESTADO : STOPPED\n");
 		break;
 	case GOING_FORWARD:
-		strcpy(str, "CAR ESTADO : GOING FORWARD\n");
+		strcpy(str, "CAR MONITOR ESTADO : GOING FORWARD\n");
 		break;
 	case GOING_BACK:
-		strcpy(str, "CAR ESTADO : GOING BACK\n");
+		strcpy(str, "CAR MONITOR ESTADO : GOING BACK\n");
 		break;
 	case GOING_RIGHT:
-		strcpy(str, "CAR ESTADO : GOING RIGHT\n");
+		strcpy(str, "CAR MONITOR ESTADO : GOING RIGHT\n");
 		break;
 	case GOING_LEFT:
-		strcpy(str, "CAR ESTADO : GOING LEFT\n");
+		strcpy(str, "CAR MONITOR ESTADO : GOING LEFT\n");
 		break;
 	}
 	DISPLAY_printString(str);

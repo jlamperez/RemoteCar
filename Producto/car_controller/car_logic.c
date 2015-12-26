@@ -15,43 +15,43 @@
 
 ESTADO(stopped)
 /*----------------------------------------------------------------------*/
-ITEM_EAC( GOING_FORWARD, E_goForward , accion_nula),
-ITEM_EAC( GOING_BACK , E_goBack , accion_nula),
-ITEM_EAC( GOING_LEFT , E_goLeft, accion_nula),
-ITEM_EAC( GOING_RIGHT , E_goRight , accion_nula)
-FIN_ESTADO(stopped, STOPPED , A_stopped)
+ITEM_EAC( GOING_FORWARD, E_goForward , A_goingForward),
+ITEM_EAC( GOING_BACK , E_goBack , A_goingBack),
+ITEM_EAC( GOING_LEFT , E_goLeft, A_goingLeft),
+ITEM_EAC( GOING_RIGHT , E_goRight , A_goingRight)
+FIN_ESTADO(stopped, STOPPED ,A_Do_stopped )
 /*----------------------------------------------------------------------*/
 ESTADO(going_forward)
 /*----------------------------------------------------------------------*/
-ITEM_EAC( STOPPED, E_carStop , accion_nula),
-ITEM_EAC( GOING_BACK , E_goBack , accion_nula),
-ITEM_EAC( GOING_LEFT , E_goLeft, accion_nula),
-ITEM_EAC( GOING_RIGHT , E_goRight , accion_nula)
-FIN_ESTADO(going_forward, GOING_FORWARD , A_goingForward)
+ITEM_EAC( STOPPED, E_carStop , A_stopped),
+ITEM_EAC( GOING_BACK , E_goBack , A_goingBack),
+ITEM_EAC( GOING_LEFT , E_goLeft, A_goingLeft),
+ITEM_EAC( GOING_RIGHT , E_goRight , A_goingRight)
+FIN_ESTADO(going_forward, GOING_FORWARD , A_Do_goingForward)
 /*----------------------------------------------------------------------*/
 ESTADO(going_back)
 /*----------------------------------------------------------------------*/
-ITEM_EAC( GOING_FORWARD, E_goForward , accion_nula),
-ITEM_EAC( STOPPED , E_carStop , accion_nula),
-ITEM_EAC( GOING_LEFT , E_goLeft, accion_nula),
-ITEM_EAC( GOING_RIGHT , E_goRight , accion_nula)
-FIN_ESTADO(going_back, GOING_BACK , A_goingBack)
+ITEM_EAC( GOING_FORWARD, E_goForward , A_goingForward),
+ITEM_EAC( STOPPED , E_carStop , A_stopped),
+ITEM_EAC( GOING_LEFT , E_goLeft, A_goingLeft),
+ITEM_EAC( GOING_RIGHT , E_goRight , A_goingRight)
+FIN_ESTADO(going_back, GOING_BACK , A_Do_goingBack)
 /*----------------------------------------------------------------------*/
 ESTADO(going_right)
 /*----------------------------------------------------------------------*/
-ITEM_EAC( GOING_FORWARD, E_goForward , accion_nula),
-ITEM_EAC( GOING_BACK , E_goBack , accion_nula),
-ITEM_EAC( GOING_LEFT , E_goLeft, accion_nula),
-ITEM_EAC( STOPPED , E_carStop , accion_nula)
-FIN_ESTADO(going_right, GOING_RIGHT , A_goingRight)
+ITEM_EAC( GOING_FORWARD, E_goForward , A_goingForward),
+ITEM_EAC( GOING_BACK , E_goBack , A_goingBack),
+ITEM_EAC( GOING_LEFT , E_goLeft, A_goingLeft),
+ITEM_EAC( STOPPED , E_carStop , A_stopped)
+FIN_ESTADO(going_right, GOING_RIGHT , A_Do_goingRight)
 /*----------------------------------------------------------------------*/
 ESTADO(going_left)
 /*----------------------------------------------------------------------*/
-ITEM_EAC( GOING_FORWARD, E_goForward , accion_nula),
-ITEM_EAC( GOING_BACK , E_goBack , accion_nula),
-ITEM_EAC( STOPPED , E_carStop, accion_nula),
-ITEM_EAC( GOING_RIGHT , E_goRight , accion_nula)
-FIN_ESTADO(going_left, GOING_LEFT , A_goingLeft)
+ITEM_EAC( GOING_FORWARD, E_goForward , A_goingForward),
+ITEM_EAC( GOING_BACK , E_goBack , A_goingBack),
+ITEM_EAC( STOPPED , E_carStop, A_stopped),
+ITEM_EAC( GOING_RIGHT , E_goRight , A_goingRight)
+FIN_ESTADO(going_left, GOING_LEFT , A_Do_goingLeft)
 /*----------------------------------------------------------------------*/
 AUTOMATA(car_logic)
 /*======================================================================*/
@@ -71,27 +71,53 @@ void accion_nula(void) {
 }
 void A_goingForward(void) {
 	char str[60];
-	sprintf(str, "CAR LOGIC ACTION: GOING_FORWARD \r\n");
+	sprintf(str, "CAR LOGIC TRASNSITION ACTION: GOING_FORWARD \r\n");
 	DISPLAY_printString(str);
 }
 void A_stopped(void) {
 	char str[60];
-	sprintf(str, "CAR LOGIC ACTION: STOPPED \r\n");
+	sprintf(str, "CAR LOGIC TRANSITION ACTION: STOPPED \r\n");
 	DISPLAY_printString(str);
 }
 void A_goingBack(void) {
 	char str[60];
-	sprintf(str, "CAR LOGIC ACTION: GOING_BACK \r\n");
+	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_BACK \r\n");
 	DISPLAY_printString(str);
 }
 void A_goingRight(void) {
 	char str[60];
-	sprintf(str, "CAR LOGIC ACTION GOING_RIGHT \r\n");
+	sprintf(str, "CAR LOGIC TRANSITION ACTION GOING_RIGHT \r\n");
 	DISPLAY_printString(str);
 }
 void A_goingLeft(void) {
 	char str[60];
-	sprintf(str, "CAR LOGIC ACTION: GOING_LEFT \r\n");
+	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_LEFT \r\n");
+	DISPLAY_printString(str);
+}
+
+void A_Do_goingForward(void){
+	char str[60];
+	sprintf(str, "CAR LOGIC DO ACTION: GOING_FORWARD \r\n");
+	DISPLAY_printString(str);
+}
+void A_Do_stopped(void){
+	char str[60];
+	sprintf(str, "CAR LOGIC DO ACTION: STOPPED \r\n");
+	DISPLAY_printString(str);
+}
+void A_Do_goingBack(void){
+	char str[60];
+	sprintf(str, "CAR LOGIC DO ACTION: GOING_BACK \r\n");
+	DISPLAY_printString(str);
+}
+void A_Do_goingRight(void){
+	char str[60];
+	sprintf(str, "CAR LOGIC DO ACTION: GOING_RIGHT \r\n");
+	DISPLAY_printString(str);
+}
+void A_Do_goingLeft(void){
+	char str[60];
+	sprintf(str, "CAR LOGIC DO ACTION: GOING_LEFT \r\n");
 	DISPLAY_printString(str);
 }
 

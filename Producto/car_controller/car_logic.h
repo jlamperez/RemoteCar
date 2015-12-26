@@ -22,6 +22,12 @@ void A_goingBack(void);
 void A_goingRight(void);
 void A_goingLeft(void);
 
+void A_Do_goingForward(void);
+void A_Do_stopped(void);
+void A_Do_goingBack(void);
+void A_Do_goingRight(void);
+void A_Do_goingLeft(void);
+
 /*************************eventos*******************************/
 BOOLEAN E_goForward(void);
 BOOLEAN E_goBack(void);

@@ -1,6 +1,7 @@
 
 #include "maquina_de_estados.h"
 
+/*FUNCIONES DEL MOTOR DE EJECUCION DE LAS MAQUINAS DE ESTADOS*/
 void EjecutaAutomata(TS_AUTOMATA *elAutomata)
 {
 	TS_ESTADO **Indx;    /* Valor indice rastreador */
