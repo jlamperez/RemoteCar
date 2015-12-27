@@ -58,6 +58,7 @@
 /** 														 						**/
 /** 																			 	**/
 /*************************************************************************************/
+void DISPLAY_Car(int x, int y);
 
 /*************************************************************************************/
 /** 																			 	**/
@@ -116,20 +117,26 @@ void DISPLAY_init() {
  *
  ******************************************************************************/
 void DISPLAY_printString(char str[]) {
-
+	static int y = 0;
+	static int x = 0;
 #if defined(ZYNQ_7000) &&  defined(VGA_DISPLAY)
 
-//	borrarFrameBuffer();
+	DISPLAY_Car(x,y);
+	if (strstr(str, "GOING_FORWARD") > 0) {
+		y = y - 5;
+	}
+	else if (strstr(str, "GOING_RIGHT") > 0) {
+		x = x + 5;
+	}
+	else if (strstr(str, "GOING_LEFT") > 0) {
+		x = x - 5;
+	}
+	else if (strstr(str, "GOING_BACK") > 0) {
+		y = y + 5;
+	}
+	else if (strstr(str, "STOPPED") > 0) {
 
-	displayTestRect(100, 100 , 20 , 40);
-	displayTestRect(95, 105 , 5 , 10);
-	displayTestRect(95, 125 , 5 , 10);
-	displayTestRect(120, 105 , 5 , 10);
-	displayTestRect(120, 125 , 5 , 10);
-
-//	copiarFrameBuffer();
-
-	updateFrame();
+	}
 
 #endif
 
@@ -152,11 +159,30 @@ int DISPLAY_readInteger() {
 
 }
 
+/************************************************************************************/
+/**																				   **/
+/**								Car display functions.												   **/
+/**																				   **/
+/************************************************************************************/
+void DISPLAY_Car(int x, int y){
+	borrarFrameBuffer();
+
+		displayTestRect(100 + x, 100 + y, 20, 40);
+		displayTestRect(95 + x, 105 + y, 5, 10);
+		displayTestRect(95 + x, 125 + y, 5, 10);
+		displayTestRect(120 + x, 105 + y, 5, 10);
+		displayTestRect(120 + x, 125 + y, 5, 10);
+
+
+		copiarFrameBuffer();
+
+		updateFrame();
+}
+
 /*************************************************************************************/
 /** 																			 	**/
 /** 						EOF					 								 	**/
 /** 														 						**/
 /** 																			 	**/
 /*************************************************************************************/
-
 
