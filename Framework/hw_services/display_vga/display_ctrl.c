@@ -1,3 +1,9 @@
+/*
+ * display_ctrl.c
+ *
+ *  Created on: 12/01/2016
+ *      Author: Jorge
+ */
 /************************************************************************/
 /*																		*/
 /*	display_ctrl.c	--	Digilent Display Controller Driver				*/

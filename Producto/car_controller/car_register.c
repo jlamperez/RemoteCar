@@ -5,12 +5,16 @@
  *      Author: jorge
  */
 #include "car_register.h"
+#include "car_logic.h"
 
-int registers[REGISTERS_COUNT];
+#include <string.h>
 
-void registers_init(){
+uint16 registers[CAR_REGISTER_COUNT];
 
+void CAR_REGISTERS_init() {
+	// Initialize all registers to zero.
+	memset(&registers[0], 0, CAR_REGISTER_COUNT);
 }
-void registers_default(){
-
+void CAR_REGISTERS_default() {
+	CAR_REGISTERS_init();
 }

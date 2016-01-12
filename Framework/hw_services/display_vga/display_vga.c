@@ -9,7 +9,6 @@
 #include <math.h>
 #include "xil_cache.h"
 
-#include "font8x8.h"
 
 //ESTE ES EL BUFFER MEAPDEO A MEMEORIA. ESTO SE REALIZA EN LA FUNCIÓN DisplayDemoInitialize
 u32 vgaBuf[3][DISPLAYDEMO_MAX_FRAME];

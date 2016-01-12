@@ -37,6 +37,7 @@
 
 #include "../hal_core/display.h"
 #include "display_vga.h"
+#include "car_register.h"
 
 /*************************************************************************************/
 /** 																			 	**/
@@ -117,22 +118,17 @@ void DISPLAY_init() {
  *
  ******************************************************************************/
 void DISPLAY_printString(char str[]) {
-	static int y = 0;
-	static int x = 0;
+
 #if defined(ZYNQ_7000) &&  defined(VGA_DISPLAY)
 
-	DISPLAY_Car(x, y);
-	if (strstr(str, "GOING_FORWARD") > 0) {
-		y = y - 5;
-	} else if (strstr(str, "GOING_RIGHT") > 0) {
-		x = x + 5;
-	} else if (strstr(str, "GOING_LEFT") > 0) {
-		x = x - 5;
-	} else if (strstr(str, "GOING_BACK") > 0) {
-		y = y + 5;
-	} else if (strstr(str, "STOPPED") > 0) {
+	uint16 x;
+	uint16 y;
 
-	}
+	x = CAR_registers_read(CAR_REGISTER_POS_X);
+	y = CAR_registers_read(CAR_REGISTER_POS_Y);
+
+	DISPLAY_Car(x, y);
+
 
 #endif
 

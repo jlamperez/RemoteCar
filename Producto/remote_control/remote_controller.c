@@ -13,6 +13,11 @@
 #include "button_services.h"
 #include <string.h>
 
+#define SWITCH_SW0 0x01
+#define SWITCH_SW1 0x02
+#define SWITCH_SW2 0x04
+#define SWITCH_SW3 0x08
+#define NO_SWITCH 0x00
 
 CAR_CMD REMOTE_CONTROLLER_parseCmd(unsigned char buttons);
 void REMOTE_CONTROLLER_sendCmd(CAR_CMD cmd, STATIC_CIRCULAR_BUFFER *pBuffer);
@@ -38,18 +43,15 @@ void remoteControlerTask(void) {
 }
 
 /*
- * Mirar este metodo mas detenidamente porque si tengo los tres primeros switches encendidos
- * el primer if lo pasara cambiando a FORWARD pero el segundo tmb y el tercero tmb
- * retornando RIGHT -> CMD:3 habría que hacer que si hay 2 o más switches en on que retorna
- * NOTHING.
+ *
  */
 CAR_CMD REMOTE_CONTROLLER_parseCmd(unsigned char buttons){
 	CAR_CMD ret = NOTHING;
-	if (buttons == 0x01) ret = FORWARD;
-	if (buttons == 0x02) ret = BACKWARD;
-	if (buttons == 0x04) ret = RIGHT;
-	if (buttons == 0x08) ret = LEFT;
-	if (buttons == 0x0) ret = STOP; //Cuando haces el & con 0 siempre es 0 por lo que el if de STOP no saltará
+	if (buttons == SWITCH_SW0) ret = FORWARD;
+	if (buttons == SWITCH_SW1) ret = BACKWARD;
+	if (buttons == SWITCH_SW2) ret = RIGHT;
+	if (buttons == SWITCH_SW3) ret = LEFT;
+	if (buttons == NO_SWITCH) ret = STOP; //Cuando haces el & con 0 siempre es 0 por lo que el if de STOP no saltará
 
 	return ret;
 }

@@ -10,7 +10,8 @@
 #include "car_logic.h"
 #include "maquina_de_estados.h"
 #include "car.h"
-#include "display.h"
+//#include "display.h"
+#include "car_register.h"
 
 
 ESTADO(stopped)
@@ -71,54 +72,90 @@ void accion_nula(void) {
 }
 void A_goingForward(void) {
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC TRASNSITION ACTION: GOING_FORWARD \r\n");
-	DISPLAY_printString(str);
+
+	value = CAR_registers_read(CAR_REGISTER_POS_Y);
+	//HAL_motor(FORWARD);
+
+	value= value -5;
+	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+//	DISPLAY_printString(str);
+
 }
 void A_stopped(void) {
 	char str[60];
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: STOPPED \r\n");
-	DISPLAY_printString(str);
+//	DISPLAY_printString(str);
 }
 void A_goingBack(void) {
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_BACK \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_Y);
+	value = value +5;
+	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+//	DISPLAY_printString(str);
 }
 void A_goingRight(void) {
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION GOING_RIGHT \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_X);
+	value = value +5;
+	CAR_registers_write(CAR_REGISTER_POS_X, value);
+//	DISPLAY_printString(str);
 }
 void A_goingLeft(void) {
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_LEFT \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_X);
+	value = value -5;
+	CAR_registers_write(CAR_REGISTER_POS_X, value);
+//	DISPLAY_printString(str);
 }
 
 void A_Do_goingForward(void){
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_FORWARD \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_Y);
+	value= value-5;
+	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+//	DISPLAY_printString(str);
 }
 void A_Do_stopped(void){
 	char str[60];
 	sprintf(str, "CAR LOGIC DO ACTION: STOPPED \r\n");
-	DISPLAY_printString(str);
+//	DISPLAY_printString(str);
 }
 void A_Do_goingBack(void){
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_BACK \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_Y);
+	value = value +5;
+	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+//	DISPLAY_printString(str);
 }
 void A_Do_goingRight(void){
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_RIGHT \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_X);
+	value = value +5;
+	CAR_registers_write(CAR_REGISTER_POS_X, value);
+//	DISPLAY_printString(str);
 }
 void A_Do_goingLeft(void){
 	char str[60];
+	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_LEFT \r\n");
-	DISPLAY_printString(str);
+	value = CAR_registers_read(CAR_REGISTER_POS_X);
+	value= value-5;
+	CAR_registers_write(CAR_REGISTER_POS_X, value);
+//	DISPLAY_printString(str);
 }
 
 /*****************************************************************/
@@ -126,7 +163,7 @@ void A_Do_goingLeft(void){
 /*****************************************************************/
 BOOLEAN E_goForward(void) {
 	BOOLEAN ret = FALSE;
-	if (car.car_cmd == FORWARD) {
+	if (CAR_isForward(car)) {
 		ret = TRUE;
 	}
 	return ret;
@@ -134,7 +171,7 @@ BOOLEAN E_goForward(void) {
 
 BOOLEAN E_goBack(void) {
 	BOOLEAN ret = FALSE;
-	if (car.car_cmd == BACKWARD) {
+	if (CAR_isBackward(car)) {
 		ret = TRUE;
 	}
 	return ret;
@@ -142,7 +179,7 @@ BOOLEAN E_goBack(void) {
 
 BOOLEAN E_goLeft(void) {
 	BOOLEAN ret = FALSE;
-	if (car.car_cmd == LEFT) {
+	if (CAR_isLeft(car)) {
 		ret = TRUE;
 	}
 	return ret;
@@ -150,7 +187,7 @@ BOOLEAN E_goLeft(void) {
 
 BOOLEAN E_goRight(void) {
 	BOOLEAN ret = FALSE;
-	if (car.car_cmd == RIGHT) {
+	if (CAR_isRight(car)) {
 		ret = TRUE;
 	}
 	return ret;
@@ -158,7 +195,7 @@ BOOLEAN E_goRight(void) {
 
 BOOLEAN E_carStop(void) {
 	BOOLEAN ret = FALSE;
-	if (car.car_cmd == STOP) {
+	if (CAR_isStop(car)) {
 		ret = TRUE;
 	}
 	return ret;

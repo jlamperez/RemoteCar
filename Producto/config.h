@@ -36,6 +36,7 @@ Description   : Fichero público de configuración
 #define UART
 #define UART_DISPLAY
 #define DEBUG
+#define VGA_DISPLAY
 
 
 #endif /* CONFIG_H_ */
