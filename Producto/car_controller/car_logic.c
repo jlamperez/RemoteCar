@@ -10,8 +10,7 @@
 #include "car_logic.h"
 #include "maquina_de_estados.h"
 #include "car.h"
-//#include "display.h"
-#include "car_register.h"
+#include "motor.h"
 
 
 ESTADO(stopped)
@@ -72,89 +71,69 @@ void accion_nula(void) {
 }
 void A_goingForward(void) {
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC TRASNSITION ACTION: GOING_FORWARD \r\n");
+	MOTOR_forward();
 
-	value = CAR_registers_read(CAR_REGISTER_POS_Y);
-	//HAL_motor(FORWARD);
-
-	value= value -5;
-	CAR_registers_write(CAR_REGISTER_POS_Y, value);
 //	DISPLAY_printString(str);
 
 }
 void A_stopped(void) {
 	char str[60];
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: STOPPED \r\n");
+	MOTOR_stop();
 //	DISPLAY_printString(str);
 }
 void A_goingBack(void) {
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_BACK \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_Y);
-	value = value +5;
-	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+	MOTOR_back();
+
 //	DISPLAY_printString(str);
 }
 void A_goingRight(void) {
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION GOING_RIGHT \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_X);
-	value = value +5;
-	CAR_registers_write(CAR_REGISTER_POS_X, value);
+	MOTOR_right();
+
 //	DISPLAY_printString(str);
 }
 void A_goingLeft(void) {
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC TRANSITION ACTION: GOING_LEFT \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_X);
-	value = value -5;
-	CAR_registers_write(CAR_REGISTER_POS_X, value);
+	MOTOR_left();
 //	DISPLAY_printString(str);
 }
 
 void A_Do_goingForward(void){
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_FORWARD \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_Y);
-	value= value-5;
-	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+	MOTOR_forward();
 //	DISPLAY_printString(str);
 }
 void A_Do_stopped(void){
 	char str[60];
 	sprintf(str, "CAR LOGIC DO ACTION: STOPPED \r\n");
+	MOTOR_stop();
 //	DISPLAY_printString(str);
 }
 void A_Do_goingBack(void){
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_BACK \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_Y);
-	value = value +5;
-	CAR_registers_write(CAR_REGISTER_POS_Y, value);
+	MOTOR_back();
+
 //	DISPLAY_printString(str);
 }
 void A_Do_goingRight(void){
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_RIGHT \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_X);
-	value = value +5;
-	CAR_registers_write(CAR_REGISTER_POS_X, value);
+	MOTOR_right();
+
 //	DISPLAY_printString(str);
 }
 void A_Do_goingLeft(void){
 	char str[60];
-	uint16 value;
 	sprintf(str, "CAR LOGIC DO ACTION: GOING_LEFT \r\n");
-	value = CAR_registers_read(CAR_REGISTER_POS_X);
-	value= value-5;
-	CAR_registers_write(CAR_REGISTER_POS_X, value);
+	MOTOR_left();
 //	DISPLAY_printString(str);
 }
 

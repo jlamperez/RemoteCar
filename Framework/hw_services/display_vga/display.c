@@ -37,7 +37,7 @@
 
 #include "../hal_core/display.h"
 #include "display_vga.h"
-#include "car_register.h"
+#include "register.h"
 
 /*************************************************************************************/
 /** 																			 	**/
@@ -124,8 +124,8 @@ void DISPLAY_printString(char str[]) {
 	uint16 x;
 	uint16 y;
 
-	x = CAR_registers_read(CAR_REGISTER_POS_X);
-	y = CAR_registers_read(CAR_REGISTER_POS_Y);
+	x = registers_read(REGISTER_POS_X);
+	y = registers_read(REGISTER_POS_Y);
 
 	DISPLAY_Car(x, y);
 
@@ -164,6 +164,8 @@ void DISPLAY_Car(int x, int y) {
 	displayTestRect(95 + x, 125 + y, 5, 10);
 	displayTestRect(120 + x, 105 + y, 5, 10);
 	displayTestRect(120 + x, 125 + y, 5, 10);
+
+	displayHollowRect();
 
 	copiarFrameBuffer();
 

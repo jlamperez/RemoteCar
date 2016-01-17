@@ -14,7 +14,7 @@
 #include "simple_buffer.h"
 #include "../libs/static_circular_buffer.h"
 #include "button_services.h"
-#include "car_register.h"
+#include "register.h"
 
 void displayTask();
 
@@ -25,7 +25,7 @@ int main(void) {
 	HW_ABSTRACTION_initTimer(10);
 	SCHEDULER_init();
 	BUTTON_SERVICES_init();
-	CAR_REGISTERS_init();
+	REGISTER_init();
 
 	SCHEDULER_addTask(remoteControlerTask, 40, 0);
 	SCHEDULER_addTask(carControlerTask, 20, 0);

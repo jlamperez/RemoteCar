@@ -88,7 +88,8 @@ void copiarFrameBuffer(void);
 void borrarFrameBuffer(void);
 
 void displayTestRect(int x0, int y0 , int width , int height);
-void displayTestCirc(int x0, int y0 , int r);
+void displayHollowRect();
+//void displayLine(int x0, int y0 , int width , int height);
 void updateFrame(void);
 
 /* ------------------------------------------------------------ */

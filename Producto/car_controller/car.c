@@ -6,13 +6,21 @@
  */
 
 #include "car.h"
+#include "register.h"
 
-void CAR_init(CAR *car, unsigned char id) {
+void CAR_init(CAR *car, unsigned char id){
 	car->car_cmd = NOTHING;
 	car->id = id;
+	car->front_sensor = 0;
+	car->back_sensor = 0;
+	car->right_sensor = 0;
+	car->left_sensor = 0;
 }
 void CAR_update(CAR *car) {
-
+	car->front_sensor = registers_read(REGISTER_FRONT_SENSOR);
+	car->back_sensor = registers_read(REGISTER_BACK_SENSOR);
+	car->right_sensor = registers_read(REGISTER_RIGHT_SENSOR);
+	car->left_sensor = registers_read(REGISTER_LEFT_SENSOR);
 }
 void CAR_removeCMD(CAR *car) {
 	car->car_cmd = NOTHING;

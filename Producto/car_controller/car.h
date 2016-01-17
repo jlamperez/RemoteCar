@@ -15,9 +15,13 @@ typedef unsigned char BOOLEAN;
 typedef struct{
 	CAR_CMD car_cmd;
 	unsigned char id;
+	BOOLEAN front_sensor;
+	BOOLEAN back_sensor;
+	BOOLEAN right_sensor;
+	BOOLEAN left_sensor;
 }CAR;
 
-void CAR_init(CAR *car, unsigned char id );
+void CAR_init(CAR *car, unsigned char id);
 void CAR_update(CAR *car);
 void CAR_removeCMD(CAR *car);
 int CAR_isForward(CAR car);
